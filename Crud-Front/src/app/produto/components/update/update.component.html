@@ -1,0 +1,63 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">Atualização Produto</li>
+    </ol>
+</nav>
+
+<div class="container">
+
+    <div class="card add-produto">
+        <h5 class="card-header">Adicionar Produto</h5>
+        <div class="card-body">
+            <form id="add-form" (ngSubmit)="f.form.valid && atualizarProduto(f)" #f="ngForm" novalidate>
+                <div class="form-group">
+                    <div class=" row col-12">
+                        <div class="col-6">
+                            <label for="nomeProduto">Nome</label>
+                            <input type="text" [(ngModel)]="produto.nomeProduto" id="nomeProduto" name="nomeProduto"
+                                required class="form-control" placeholder="Digite o nome do produto">
+                        </div>
+                        <div class="col-6">
+                            <label for="codigoBarra">Codigo de Barras</label>
+                            <input type="text" [(ngModel)]="produto.codigoBarra" id="codigoBarra" name="codigoBarra"
+                                required class="form-control" placeholder="Digite o nome do produto">
+                        </div>
+                    </div>
+                    <div class=" row col-12">
+                        <div class="col-3">
+                            <label for="quantidade">Quantidade</label>
+                            <input type="text" [(ngModel)]="produto.quantidade" id="quantidade" name="quantidade"
+                                required class="form-control" placeholder="Digite o nome do produto">
+                        </div>
+                        <div class="col-6">
+                            <label for="categoria">Categorias</label>
+                            <select class="custom-select" (change)="changeCategoria($event)">
+                                <option [value]="">Escolha uma categoria</option>
+                                <option *ngFor="let categoria of categorias" [value]="categoria.id">
+                                    {{categoria.nomeCategoria}}</option>
+                            </select>
+                        </div>
+                        <div class="col-3">
+                            <label for="categoria">Valor</label>
+                            <input type="number" [(ngModel)]="produto.valor" id="valor" name="valor" step="0.01" min="0"
+                                class="form-control" placeholder="Digite o valor do produto">
+                        </div>
+                    </div>
+                    <div class="row col-12">
+                        <div class="col-12">
+                            <label for="categoria">Descrição</label>
+                            <input type="text" [(ngModel)]="produto.descricao" id="descricao" name="descricao"
+                                class="form-control" placeholder="Descrição do produto">
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <button type="submit" class="btn btn-primary btn-add-produto">Atualizar</button>
+                <button type="reset" class="btn btn-secondary btn-add-produto" (click)="cancelar(f)">Cancelar</button>
+            </form>
+        </div>
+    </div>
+</div>

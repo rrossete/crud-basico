@@ -1,0 +1,71 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active" aria-current="page">CRUD Categorias</li>
+  </ol>
+</nav>
+
+
+<div class="container">
+
+  <div class="card add-categoria">
+    <h5 class="card-header">Adicionar Categoria</h5>
+    <div class="card-body">
+      <form id="add-form" (ngSubmit)="f.form.valid && salvarCategoria(f)" #f="ngForm" novalidate>
+        <div class="form-group">
+          <div class=" row col-12">
+            <div class="col-6">
+              <label for="nomeCategoria">Nome</label>
+              <input type="text" [(ngModel)]="categoria.nomeCategoria" id="nomeCategoria" name="nomeCategoria" required
+                class="form-control" placeholder="Digite o nome do produto">
+            </div>
+            <div class="col-6">
+              <label for="descricao">Descrição</label>
+              <input type="text" [(ngModel)]="categoria.descricao" id="descricao" name="descricao" class="form-control"
+                placeholder="Descrição do produto">
+
+            </div>
+          </div>
+
+        </div>
+
+
+        <button type="submit" class="btn btn-primary btn-add-categoria">Salvar</button>
+        <button type="reset" class="btn btn-secondary btn-add-categoria" (click)="cleanForm(f)">Cancelar</button>
+      </form>
+
+
+    </div>
+  </div>
+
+  <div class="card list-categoria">
+    <h5 class="card-header">Lista de Categorias</h5>
+    <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Descrição</th>
+            <th scope="col">Ação</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let categoria of categorias">
+            <td>
+              {{ categoria.nomeCategoria }}
+            </td>
+            <td>{{ categoria.descricao}}</td>
+            <td>
+              <button type="button" class="btn btn-warning btn-sm" (click)="editarCategoria(categoria)">Editar</button>
+              <button type="button" class="btn btn-danger btn-sm ml-1"
+                (click)="deletarCategoria(categoria)">Deletar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+
+</div>

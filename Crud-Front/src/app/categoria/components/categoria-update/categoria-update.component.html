@@ -1,0 +1,33 @@
+<div class="container">
+
+    <div class="card add-categoria">
+      <h5 class="card-header">Adicionar Categoria</h5>
+      <div class="card-body">
+        <form id="add-form" (ngSubmit)="f.form.valid && atualizarCategoria(f)" #f="ngForm" novalidate>
+          <div class="form-group">
+            <div class=" row col-12">
+              <div class="col-6">
+                <label for="nomeCategoria">Nome</label>
+                <input type="text" [(ngModel)]="categoria.nomeCategoria" id="nomeCategoria" name="nomeCategoria" required
+                  class="form-control" placeholder="Digite o nome do produto">
+              </div>
+              <div class="col-6">
+                <label for="descricao">Descrição</label>
+                <input type="text" [(ngModel)]="categoria.descricao" id="descricao" name="descricao" class="form-control"
+                  placeholder="Descrição do produto">
+  
+              </div>
+            </div>
+  
+          </div>
+  
+  
+          <button type="submit" class="btn btn-primary btn-add-categoria">Atualizar</button>
+          <button type="reset" class="btn btn-secondary btn-add-categoria" (click)="cancelar(f)">Cancelar</button>
+        </form>
+  
+  
+      </div>
+    </div>
+</div>
+  
