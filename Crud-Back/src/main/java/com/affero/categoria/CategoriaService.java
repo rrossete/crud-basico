@@ -24,7 +24,8 @@ public class CategoriaService {
 
 	public Categoria obterCategoriaPorId(Integer id) {
 		this.validarId(id);
-		return this.categoriaRepository.getOne(id);
+		return this.categoriaRepository.findById(id).orElseThrow(
+				() -> new BusinessException(MessageFormat.format("Categoria com id: {0} não encontrado", id)));
 	}
 
 	public List<CategoriaDto> getProdutos() {
@@ -32,7 +33,7 @@ public class CategoriaService {
 
 	}
 
-	public void atualizar(CategoriaDto dto, Integer id) {
+	public void atualizar(CategoriaDto dto, int id) {
 		dto.setId(id);
 		this.validarId(dto.getId());
 		this.validarExistencia(id);
