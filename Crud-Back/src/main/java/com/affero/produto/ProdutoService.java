@@ -60,18 +60,22 @@ public class ProdutoService {
 	private void validarParametros(ProdutoDto produtoDto) {
 		this.validarCategoria(produtoDto.getCategoria());
 
-		if (produtoDto.getCodigoBarra().isEmpty()) {
+		if (Objects.isNull(produtoDto.getCodigoBarra())  || produtoDto.getCodigoBarra().isEmpty()) {
 			throw new BusinessException("O código de barras é obrigatório.");
 		}
-		if (produtoDto.getNomeProduto().isEmpty()) {
+		if (Objects.isNull(produtoDto.getValor()) ) {
+			throw new BusinessException("O valor do produto é obrigatório.");
+		}
+		if (Objects.isNull(produtoDto.getNomeProduto())  || produtoDto.getNomeProduto().isEmpty()) {
 			throw new BusinessException("O nome do produto é obreigatório.");
 		}
-		if (produtoDto.getDescricao().isEmpty()) {
+		if (Objects.isNull(produtoDto.getDescricao())  || produtoDto.getDescricao().isEmpty()) {
 			throw new BusinessException("A descrição do produto é obrigatória.");
 		}
 		if (produtoDto.getQuantidade() <= 0) {
 			throw new BusinessException("A quantidade do produto é obrigatório");
 		}
+		
 
 	}
 
@@ -83,7 +87,7 @@ public class ProdutoService {
 	}
 
 	private void validarCategoria(Integer categoria) {
-		if(Objects.isNull(this.obterCategoria(categoria))) {
+		if(Objects.isNull(this.obterCategoria(categoria)) || categoria <= 0) {
 			throw new BusinessException("A categoria não existe.");
 		}
 

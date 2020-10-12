@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { empty } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Categoria } from '../../model/categoria';
@@ -16,13 +17,18 @@ export class CategoriaTabelaComponent implements OnInit {
   categorias: Categoria[];
   categoria = {} as Categoria;
   errorMessage = '' as string;
+  modalErro = false as boolean;
+  
 
-  constructor(private categoriaService: CategoriaService, private router: Router) {
+  constructor(private categoriaService: CategoriaService, 
+              private router: Router) {
   }
 
   ngOnInit(): void {
     this.obterCategorias();
     this.errorMessage = '';
+    this.modalErro = false
+    ;
   }
 
   editarCategoria(categoria: Categoria) {
@@ -34,11 +40,14 @@ export class CategoriaTabelaComponent implements OnInit {
       this.obterCategorias();
 
     },
-    (err)=> this.tratarErro(err));
+    (err) => {
+      this.errorMessage = err;
+      this.modalErro = true;
+
+    }
+    );
   }
-  tratarErro(err: any): void {
-    //fazer a captura do erro 
-  }
+
 
 
   obterCategorias() {
@@ -51,12 +60,21 @@ export class CategoriaTabelaComponent implements OnInit {
     this.categoriaService.saveCategoria(this.categoria).subscribe(() => {
       this.obterCategorias();
       this.cleanForm(form);
+    },
+    (err) => {
+      this.errorMessage = err;
+      this.modalErro = true;
+
     });
   }
 
   cleanForm(form: NgForm) {
     form.resetForm();
     this.categoria = {} as Categoria;
+  }
+
+  closeModal(){
+      this.modalErro = false;
   }
 
 

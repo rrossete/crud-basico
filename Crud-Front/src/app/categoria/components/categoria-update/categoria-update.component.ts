@@ -12,6 +12,8 @@ import { CategoriaService } from '../../service/categoria.service';
 export class CategoriaUpdateComponent implements OnInit {
 
   categoria = {} as Categoria;
+  errorMessage = '' as string;
+  modalErro = false as boolean;
 
   constructor(private activatedRoute: ActivatedRoute,
               private categoriaService: CategoriaService,
@@ -29,9 +31,14 @@ export class CategoriaUpdateComponent implements OnInit {
   }
 
   atualizarCategoria(form: NgForm) {
-    this.router.navigateByUrl('');
     this.categoriaService.updateCategoria(this.categoria).subscribe(() => {
       this.cleanForm(form);
+      this.router.navigateByUrl('');
+    },
+    (err) => {
+      this.errorMessage = err;
+      this.modalErro = true;
+
     });
 
   }
@@ -47,5 +54,10 @@ export class CategoriaUpdateComponent implements OnInit {
     form.resetForm();
     this.categoria = {} as Categoria;
   }
+
+  closeModal(){
+    this.modalErro = false;
+}
+
 
 }

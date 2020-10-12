@@ -56,7 +56,7 @@ export class CategoriaService  {
     if (error.error instanceof ErrorEvent) {
       errorMessage = error.error.message;
     } else {
-      errorMessage = `Código do erro: ${error.status}, ` + `menssagem: ${error.error.message}`;
+      errorMessage =  error.error.message;
     }
     return throwError(errorMessage);
   }

@@ -8,7 +8,5 @@ export class Produto {
     quantidade: number;
     nomeCategoria: string;
     categoria: number;
-
-   
 }
 

@@ -15,25 +15,24 @@
                         <div class="col-6">
                             <label for="nomeProduto">Nome</label>
                             <input type="text" [(ngModel)]="produto.nomeProduto" id="nomeProduto" name="nomeProduto"
-                                required class="form-control" placeholder="Digite o nome do produto">
+                                 class="form-control" placeholder="Digite o nome do produto">
                         </div>
                         <div class="col-6">
                             <label for="codigoBarra">Codigo de Barras</label>
                             <input type="text" [(ngModel)]="produto.codigoBarra" id="codigoBarra" name="codigoBarra"
-                                required class="form-control" placeholder="Digite o nome do produto">
+                                 class="form-control" placeholder="Digite o nome do produto">
                         </div>
                     </div>
                     <div class=" row col-12">
                         <div class="col-3">
                             <label for="quantidade">Quantidade</label>
                             <input type="text" [(ngModel)]="produto.quantidade" id="quantidade" name="quantidade"
-                                required class="form-control" placeholder="Digite o nome do produto">
+                                 class="form-control" placeholder="Digite o nome do produto">
                         </div>
                         <div class="col-6">
                             <label for="categoria">Categorias</label>
                             <select class="custom-select" (change)="changeCategoria($event)">
-                                <option [value]="">Escolha uma categoria</option>
-                                <option *ngFor="let categoria of categorias" [value]="categoria.id">
+                                <option [selected]="produto.categoria == categoria.id" *ngFor="let categoria of categorias" [value]="categoria.id">
                                     {{categoria.nomeCategoria}}</option>
                             </select>
                         </div>
@@ -61,3 +60,15 @@
         </div>
     </div>
 </div>
+
+<div *ngIf="modalErro"  class="mmodal-background">
+    <div class="mmodal">
+      <div class="mmodal-body">
+        <button style="margin-right: auto;" class="btn btn-primary modal-button" (click)="closeModal()">X</button>
+          <div>
+            <p>{{errorMessage}}</p>
+          </div>
+      </div>
+    </div>
+  
+  </div>

@@ -8,7 +8,7 @@
             <div class=" row col-12">
               <div class="col-6">
                 <label for="nomeCategoria">Nome</label>
-                <input type="text" [(ngModel)]="categoria.nomeCategoria" id="nomeCategoria" name="nomeCategoria" required
+                <input type="text" [(ngModel)]="categoria.nomeCategoria" id="nomeCategoria" name="nomeCategoria" 
                   class="form-control" placeholder="Digite o nome do produto">
               </div>
               <div class="col-6">
@@ -30,4 +30,17 @@
       </div>
     </div>
 </div>
+
+
+<div *ngIf="modalErro"  class="mmodal-background">
+  <div class="mmodal">
+    <div class="mmodal-body">
+      <button style="margin-right: auto;" class="btn btn-primary modal-button" (click)="closeModal()">X</button>
+        <div>
+          <p>{{errorMessage}}</p>
+        </div>
+    </div>
+  </div>
+
+  </div>
   

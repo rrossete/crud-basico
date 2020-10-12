@@ -15,12 +15,15 @@ export class TabelaComponent implements OnInit {
   produtos: Produto[];
   categorias: Categoria[];
   produto = {} as Produto;
+  errorMessage = '' as string;
+  modalErro = false as boolean;
   
 
   constructor(private router: Router, private produtoService: ProdutoService, private categoriaService: CategoriaService) { }
   ngOnInit(): void {
     this.getProdutos();
     this.obterCategorias();
+    this.modalErro = false;
   }
 
 
@@ -37,19 +40,37 @@ export class TabelaComponent implements OnInit {
   deletarProduto(produto: Produto) {
     this.produtoService.deleteProduto(produto).subscribe(() => {
       this.getProdutos();
-    });
+    },
+    (err) => {
+      this.errorMessage = err;
+      this.modalErro = true;
+
+    }
+    );
   }
 
   salvarProduto(form: NgForm) {
     this.produtoService.saveProduto(this.produto).subscribe(() => {
       this.cleanForm(form);
-    });
+    },
+    (err) => {
+      this.errorMessage = err;
+      this.modalErro = true;
+
+    }
+    );
   }
 
   atualizarProduto(form: NgForm) {
     this.produtoService.updateProduto(this.produto).subscribe(() => {
       this.cleanForm(form);
-    });
+    },
+    (err) => {
+      this.errorMessage = err;
+      this.modalErro = true;
+
+    }
+    );
   }
 
 
@@ -68,5 +89,10 @@ export class TabelaComponent implements OnInit {
   changeCategoria(e) {
     this.produto.categoria = (e.target.value);
   }
+
+  closeModal(){
+    this.modalErro = false;
+}
+
 
 }

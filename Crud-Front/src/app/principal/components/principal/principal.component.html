@@ -1,20 +1,15 @@
-<ul ngbNav #nav="ngbNav" class="nav-tabs">
-    <li ngbNavItem>
-        <a ngbNavLink>Produtos</a>
-        <ng-template ngbNavContent>
-            <router-outlet></router-outlet>
-            
-            <app-produto-tabela></app-produto-tabela>
-        </ng-template>
-    </li>
-    <li ngbNavItem>
-        <a ngbNavLink>Categorias</a>
-        <ng-template ngbNavContent>
-            <router-outlet></router-outlet>
-            
-            <app-categoria-tabela></app-categoria-tabela>
-        </ng-template>
-       
-    </li>
-</ul>
-<div [ngbNavOutlet]="nav"></div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">CRUD</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <button class="nav-button" (click)=" mudarCurrentProduto()" >Produto  <span  class="sr-only" *ngIf="produtoCurrent">(current)</span></button>
+        <button class="nav-button" (click)=" mudarCurrentCategoria()" >Categoria <span  class="sr-only" *ngIf="categoriaCurrent">(current)</span></button>
+      </div>
+    </div>
+  </nav>
+  <app-produto-tabela *ngIf="produtoCurrent"></app-produto-tabela>
+  <app-categoria-tabela  *ngIf="categoriaCurrent"></app-categoria-tabela>
+

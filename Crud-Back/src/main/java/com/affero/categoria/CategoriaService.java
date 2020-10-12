@@ -64,11 +64,11 @@ public class CategoriaService {
 
 	private void validarParametros(CategoriaDto dto) {
 		
-		if (dto.getDescricao().isBlank()) {
-			throw new BusinessException("A desceição da Categoria é obrigatória.");
+		if (Objects.isNull(dto.getDescricao()) || dto.getDescricao().isEmpty()) {
+			throw new BusinessException("A descrição da Categoria é obrigatória.");
 		}
 
-		if (dto.getNomeCategoria().isBlank()) {
+		if (Objects.isNull(dto.getNomeCategoria())  || dto.getNomeCategoria().isEmpty()) {
 			throw new BusinessException("O nome da Categoria é obrigatório.");
 		}
 
@@ -83,7 +83,7 @@ public class CategoriaService {
 
 	private void validarId(Integer id) {
 		if (id <= ZERO) {
-			throw new BusinessException("Id do produto inválido.");
+			throw new BusinessException("Categoria inválida.");
 		}
 
 	}

@@ -21,6 +21,9 @@ export class UpdateComponent implements OnInit {
     produto = {} as Produto;
     categorias: Categoria[];
 
+    errorMessage = '' as string;
+    modalErro = false as boolean;
+
   ngOnInit(): void {
     this.obterProduto();
     this.obterCategorias();
@@ -58,10 +61,20 @@ export class UpdateComponent implements OnInit {
   }
 
   atualizarProduto(form: NgForm) {
-    this.router.navigateByUrl('');
     this.produtoService.updateProduto(this.produto).subscribe(() => {
+      this.router.navigateByUrl('');
       this.cleanForm(form);
+    },
+    (err) => {
+      this.errorMessage = err;
+      this.modalErro = true;
+
     });
 
   }
+
+  closeModal(){
+    this.modalErro = false;
+}
+
 }

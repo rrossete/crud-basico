@@ -8,8 +8,19 @@ import { Component, OnInit } from '@angular/core';
 export class PrincipalComponent implements OnInit {
 
   constructor() { }
+  categoriaCurrent = false as boolean;
+  produtoCurrent = true as boolean;
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+  
+
+  mudarCurrentProduto(){
+    this.categoriaCurrent = false;
+    this.produtoCurrent = true;
+  }
+  mudarCurrentCategoria(){
+    this.categoriaCurrent = true;
+    this.produtoCurrent = false;
   }
 
 }

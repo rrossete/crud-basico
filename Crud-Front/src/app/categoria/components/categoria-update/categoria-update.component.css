@@ -13,3 +13,41 @@
 .btn-add-categoria {
     margin-right: 10px;
 }
+
+.mmodal {
+    position: relative;
+    top: 30px;
+    bottom: 0;
+    left: 400px;
+    width: 650px;
+}
+.mmodal-body {
+    background: #fff;
+    margin: 40px;
+    padding: 20px;
+}
+
+.mmodal-background {
+    
+    z-index: 900;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #000;
+
+    opacity: 0.95;
+}
+
+.modal-button{
+    float: right;
+    background-color:#6c757d;;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+
+}
